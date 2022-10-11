@@ -86,6 +86,7 @@ const overloadingArgs: OverloadingArgs = (a: number, b: number, c?: number) => {
 };
 
 /*
+Polymorphism(다형성)
 Generics(제네릭)
 제네릭은 Placeholder와 같음
 */
@@ -158,7 +159,3 @@ const varGeneric: PlusGenericType = {
     isResult: true,
   },
 };
-
-/*
-Polymorphism(다형성)
-*/
