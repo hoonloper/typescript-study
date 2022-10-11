@@ -39,11 +39,54 @@ const afterCallSignatures: CallSignatures = (num1, num2) => num1 + num2;
 const errorCallSignatures: CallSignatures = (num1, num2) => "" + num1 + num2; // Error
 
 /*
-Polymorphism(다형성)
+Overloading(오버로딩)
+- 오버로딩은 함수가 여러개의 Call Signatures를 가지고 있을 때 발생
+- 핵심은 서로 다른 여러 개의 Call Signatures를 가질 때
 */
+type OverloadingCallSignatures = {
+  (a: number, b: number): number;
+  (a: number, b: string): number;
+};
+const overloadingCallSignatures: OverloadingCallSignatures = (a, b) => {
+  if (typeof b === "string") {
+    return a;
+  }
+
+  return a + b;
+};
+
+// 또 다른 예제
+type Config = {
+  path: string;
+  state: object;
+};
+
+type Push = {
+  (path: string): void;
+  (config: Config): void;
+};
+
+const push: Push = (config: string | Config) => {
+  if (typeof config === "string") {
+    // ...Code
+  } else {
+    // ...Code
+  }
+};
+
+// 다른 여러개의 argument를 가질 경우
+type Args = {
+  (a: number, b: number): number;
+  (a: number, b: number, c: number): number;
+};
+
+const args: Args = (a: number, b: number, c?: number) => {
+  if (c) return a + b + c;
+  return a + b;
+};
 
 /*
-Overloading(오버로딩)
+Polymorphism(다형성)
 */
 
 /*
