@@ -133,6 +133,32 @@ const printTest4 = newSuperPrint([1, 2, true, false]); // printTest4 : number | 
 // Generic(제네릭) 추가
 type AddGeneric = <T, M>(a: T[], b: M) => T;
 
+/* 
+Conclusions 
+*/
+function genericTest<V>(a: V[]) {
+  return a[0];
+}
+
+const test1 = genericTest([1, 2, 3, 4]);
+const test2 = genericTest<boolean>([1, 2, 3, 4]); // Error
+
+// Generic을 이용해 확장 가능
+type GenericType<E> = {
+  str: string;
+  extraInfo: E;
+};
+
+type GenericExtra = { isResult: boolean };
+type PlusGenericType = GenericType<GenericExtra>;
+
+const varGeneric: PlusGenericType = {
+  str: "string",
+  extraInfo: {
+    isResult: true,
+  },
+};
+
 /*
 Polymorphism(다형성)
 */
