@@ -1,0 +1,7 @@
+{
+  "include": ["blockchain/src"],
+  "compilerOptions": {
+    "outDir": "blockchain/build",
+    "target": "ES6"
+  }
+}
