@@ -107,9 +107,7 @@ beforeSuperPrint(["1", "2", "3", "4"]);
 beforeSuperPrint([1, 2, true, false]);
 beforeSuperPrint([1, 2, true, false, "1"]);
 
-type AfterSuperPrint = {
-  <Type>(arr: Type[]): void;
-};
+type AfterSuperPrint = <Type>(arr: Type[]) => void;
 
 const afterSuperPrint: AfterSuperPrint = (arr) => {
   arr.forEach((i) => console.log(i));
@@ -123,9 +121,7 @@ afterSuperPrint([1, 2, true, false, "1"]);
 afterSuperPrint([1, 2, true, false, "1", [1], { str: "string" }]); // TS에서 추론해줌
 
 // 함수의 리턴값 추론
-type NewSuperPrint = {
-  <Type>(arr: Type[]): Type;
-};
+type NewSuperPrint = <Type>(arr: Type[]) => Type;
 
 const newSuperPrint: NewSuperPrint = (arr) => arr[0];
 
@@ -133,6 +129,9 @@ const printTest1 = newSuperPrint([1, 2, 3, 4]); // printTest1 : number
 const printTest2 = newSuperPrint([true, false, true, true]); // printTest2 : boolean
 const printTest3 = newSuperPrint(["1", "2", "3", "4"]); // printTest3 : string
 const printTest4 = newSuperPrint([1, 2, true, false]); // printTest4 : number | boolean
+
+// Generic(제네릭) 추가
+type AddGeneric = <T, M>(a: T[], b: M) => T;
 
 /*
 Polymorphism(다형성)
