@@ -43,3 +43,63 @@ const type: Types = {
   two: "2",
   three: "3",
 };
+
+/* 추상클래스를 인터페이스로 변환 */
+// before
+abstract class ClassAbs {
+  constructor(protected consoleStr: string, protected consoleNum: number) {}
+
+  abstract consoleString(consoleStr: string): string;
+  abstract consoleNumber(): number;
+}
+
+class BeforeConsole extends ClassAbs {
+  consoleString() {
+    return `${this.consoleStr}, ${this.consoleNum}`;
+  }
+  consoleNumber() {
+    return this.consoleNum;
+  }
+}
+
+// after
+interface InterfaceAbs {
+  consoleStr: string;
+  consoleNum: number;
+  consoleString(consoleStr: string): string;
+  consoleNumber(): number;
+}
+
+interface PlusAbs {
+  cons: string;
+}
+
+/*  
+interface 상속의 문제점은 private, property 등을 사용하지 못함
+추상클래스에서 처리하던 constructor가 interface에는 없음
+*/
+class AfterConsole implements InterfaceAbs, PlusAbs {
+  constructor(
+    public consoleStr: string,
+    public consoleNum: number,
+    public cons: string
+  ) {}
+  consoleString() {
+    return `${this.consoleStr}, ${this.consoleNum}`;
+  }
+  consoleNumber() {
+    return this.consoleNum;
+  }
+}
+
+/* interface를 type으로 지정 */
+function makeType(type: InterfaceAbs) {
+  return typeof type;
+}
+
+makeType({
+  consoleStr: "str",
+  consoleNum: 1,
+  consoleNumber: () => 5,
+  consoleString: () => "str",
+});
