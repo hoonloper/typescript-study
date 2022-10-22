@@ -5,11 +5,11 @@ type Player = {
 };
 
 const playerOne: Player = {
-  name: "one",
+  name: 'one',
 };
 
 const playerTwo: Player = {
-  name: "two",
+  name: 'two',
   age: 15,
 };
 
@@ -19,7 +19,7 @@ function playerMaker(name: string): Player {
   };
 }
 
-const newPlayer: Player = playerMaker("newPlayer");
+const newPlayer: Player = playerMaker('newPlayer');
 newPlayer.age = 20;
 
 // Example by Arrow Func
@@ -36,7 +36,7 @@ const beforeCallSignatures = (num1: number, num2: number) => num1 + num2;
 
 type CallSignatures = (num1: number, num2: number) => number;
 const afterCallSignatures: CallSignatures = (num1, num2) => num1 + num2;
-const errorCallSignatures: CallSignatures = (num1, num2) => "" + num1 + num2; // Error
+const errorCallSignatures: CallSignatures = (num1, num2) => '' + num1 + num2; // Error
 
 /*
 Overloading(오버로딩)
@@ -48,7 +48,7 @@ type OverloadingCallSignatures = {
   (a: number, b: string): number;
 };
 const overloadingCallSignatures: OverloadingCallSignatures = (a, b) => {
-  if (typeof b === "string") {
+  if (typeof b === 'string') {
     return a;
   }
 
@@ -67,7 +67,7 @@ type Push = {
 };
 
 const push: Push = (config: string | Config) => {
-  if (typeof config === "string") {
+  if (typeof config === 'string') {
     // ...Code
   } else {
     // ...Code
@@ -104,9 +104,9 @@ const beforeSuperPrint: BeforeSuperPrint = (arr) => {
 
 beforeSuperPrint([1, 2, 3, 4]);
 beforeSuperPrint([true, false, true, true]);
-beforeSuperPrint(["1", "2", "3", "4"]);
+beforeSuperPrint(['1', '2', '3', '4']);
 beforeSuperPrint([1, 2, true, false]);
-beforeSuperPrint([1, 2, true, false, "1"]);
+beforeSuperPrint([1, 2, true, false, '1']);
 
 type AfterSuperPrint = <Type>(arr: Type[]) => void;
 
@@ -116,10 +116,10 @@ const afterSuperPrint: AfterSuperPrint = (arr) => {
 
 afterSuperPrint([1, 2, 3, 4]);
 afterSuperPrint([true, false, true, true]);
-afterSuperPrint(["1", "2", "3", "4"]);
+afterSuperPrint(['1', '2', '3', '4']);
 afterSuperPrint([1, 2, true, false]);
-afterSuperPrint([1, 2, true, false, "1"]);
-afterSuperPrint([1, 2, true, false, "1", [1], { str: "string" }]); // TS에서 추론해줌
+afterSuperPrint([1, 2, true, false, '1']);
+afterSuperPrint([1, 2, true, false, '1', [1], { str: 'string' }]); // TS에서 추론해줌
 
 // 함수의 리턴값 추론
 type NewSuperPrint = <Type>(arr: Type[]) => Type;
@@ -128,15 +128,13 @@ const newSuperPrint: NewSuperPrint = (arr) => arr[0];
 
 const printTest1 = newSuperPrint([1, 2, 3, 4]); // printTest1 : number
 const printTest2 = newSuperPrint([true, false, true, true]); // printTest2 : boolean
-const printTest3 = newSuperPrint(["1", "2", "3", "4"]); // printTest3 : string
+const printTest3 = newSuperPrint(['1', '2', '3', '4']); // printTest3 : string
 const printTest4 = newSuperPrint([1, 2, true, false]); // printTest4 : number | boolean
 
 // Generic(제네릭) 추가
 type AddGeneric = <T, M>(a: T[], b: M) => T;
 
-/* 
-Conclusions 
-*/
+/* Conclusions */
 function genericTest<V>(a: V[]) {
   return a[0];
 }
@@ -154,7 +152,7 @@ type GenericExtra = { isResult: boolean };
 type PlusGenericType = GenericType<GenericExtra>;
 
 const varGeneric: PlusGenericType = {
-  str: "string",
+  str: 'string',
   extraInfo: {
     isResult: true,
   },
