@@ -1,5 +1,5 @@
 {
-  "include": ["blockchain/src"],
+  "include": ["blockchain/src", "blockchain/index.ts", "blockchain/index.ts"],
   "compilerOptions": {
     "outDir": "blockchain/build",
     "esModuleInterop": true,
